@@ -1,7 +1,11 @@
+import { useOktaAuth } from "@okta/okta-react";
 import React from "react";
+import { Link } from "react-router-dom";
 import BookModel from "../../../models/BookModel";
 
 export const ReturnBook: React.FC<{ book: BookModel }> = (props) => {
+  const { authState } = useOktaAuth();
+
   return (
     <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-3">
       <div className="text-center">
@@ -18,9 +22,19 @@ export const ReturnBook: React.FC<{ book: BookModel }> = (props) => {
 
         <h6 className="mt-2">{props.book.title}</h6>
         <p>{props.book.author}</p>
-        <a className="btn main-color text-white" href="#">
-          Reserve
-        </a>
+
+        {authState?.isAuthenticated ? (
+          <Link
+            className="btn main-color text-white"
+            to={`checkout/${props.book.id}`}
+          >
+            Reserve
+          </Link>
+        ) : (
+          <Link className="btn main-color text-white" to="login">
+            Reserve
+          </Link>
+        )}
       </div>
     </div>
   );
