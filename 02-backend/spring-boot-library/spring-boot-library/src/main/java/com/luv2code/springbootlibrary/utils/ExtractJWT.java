@@ -18,7 +18,7 @@ public class ExtractJWT {
         Map<String, String> map = new HashMap<>();
 
         for(String entry: entries){
-            String[] keyValue = entry.split(",");
+            String[] keyValue = entry.split(":");
 
             if(keyValue[0].equals(extraction)){
                 int remove = 1;
@@ -26,8 +26,8 @@ public class ExtractJWT {
                 if(keyValue[1].endsWith("}"))
                     remove = 2;
 
-                keyValue[1] = keyValue[1].substring(0, keyValue[1].length() - remove);
-                keyValue[1] = keyValue[1].substring(1);
+                keyValue[1] = keyValue[1].substring(1, keyValue[1].length() - remove);
+//                keyValue[1] = keyValue[1].substring(1);
 
                 map.put(keyValue[0], keyValue[1]);
             }
