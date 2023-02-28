@@ -11,7 +11,7 @@ Stage at initial commit:
   - React and SprinBoot projects set up and configured
   - some front end initial functionalities implemented (React Homepage, Navbar, Footer, BookCheckout, Reviews and LoadingSpinner components)
   - database with initial entities implemented 
-  - added authentication and authorisation (oAuth2 and OIDC with Okta) on the front end
+  - added authentication and authorization (oAuth2 and OIDC with Okta) on the front end
   
 
 
