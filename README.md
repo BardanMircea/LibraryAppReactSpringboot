@@ -1,5 +1,5 @@
 # LibraryAppReactSpringboot
-1st ReactFronEnd + JavaSpringBootBackEnd project
+1st ReactFrontEnd + JavaSpringBootBackEnd project
 
 Project from 'Full Stack: React and Java Spring Boot - The developer guide' course on Udemy
   - getting initiated in React, Typescript and Full Stack development via this first project
