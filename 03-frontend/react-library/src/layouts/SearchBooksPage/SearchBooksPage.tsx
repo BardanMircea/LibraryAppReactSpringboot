@@ -128,7 +128,7 @@ export const SearchBooksPage = () => {
                   className="form-control me-2"
                   type="search"
                   placeholder="search"
-                  aria-labelledBy="search"
+                  aria-labelledby="search"
                   onChange={(e) => setSearch(e.target.value)}
                 />
                 <button
