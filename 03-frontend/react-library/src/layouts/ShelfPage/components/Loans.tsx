@@ -18,7 +18,7 @@ export const Loans = () => {
   useEffect(() => {
     const fetchUserCurrentLoans = async () => {
       if (authState && authState.isAuthenticated) {
-        const url = `http://localhost:8001/api/books/secure/currentloans`;
+        const url = "http://localhost:8001/api/books/secure/currentloans";
         const requestOptions = {
           method: "GET",
           headers: {
@@ -61,10 +61,10 @@ export const Loans = () => {
     <div>
       {/* Desktop */}
       <div className="d-none d-lg-block mt-2">
-        {ShelfCurrentLoans.length > 0 ? (
+        {shelfCurrentLoans.length > 0 ? (
           <>
             <h5>Current Loans: </h5>
-            {shelfCurrentLoans.map((shelfCurrentLoan) => {
+            {shelfCurrentLoans.map((shelfCurrentLoan) => (
               <div key={shelfCurrentLoan.book.id}>
                 <div className="row mt-3 mb-3">
                   <div className="col-4 col-md-4 container">
@@ -132,8 +132,8 @@ export const Loans = () => {
                   </div>
                 </div>
                 <hr />
-              </div>;
-            })}
+              </div>
+            ))}
           </>
         ) : (
           <>
