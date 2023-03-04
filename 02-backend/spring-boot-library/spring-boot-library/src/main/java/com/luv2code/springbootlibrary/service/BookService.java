@@ -5,6 +5,7 @@ import com.luv2code.springbootlibrary.dao.CheckoutRepository;
 import com.luv2code.springbootlibrary.entity.Book;
 import com.luv2code.springbootlibrary.entity.Checkout;
 import com.luv2code.springbootlibrary.responsemodels.ShelfCurrentLoansResponse;
+import org.hibernate.annotations.Check;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -87,5 +88,38 @@ public class BookService {
             }
         }
         return shelfCurrentLoansResponses;
+    }
+
+    public void returnBook(String userEmail, Long bookId) throws Exception{
+        Optional<Book> book = bookRepository.findById(bookId);
+
+        Checkout validateCheckout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
+
+        if(!book.isPresent() || validateCheckout == null){
+            throw new Exception("Book doesn't exist or not checked out by user");
+        }
+
+        book.get().setCopiesAvailable(book.get().getCopiesAvailable() + 1);
+        bookRepository.save(book.get());
+
+        checkoutRepository.deleteById(validateCheckout.getId());
+    }
+
+    public void renewLoan(String userEmail, Long bookId) throws Exception{
+        Checkout checkout = checkoutRepository.findByUserEmailAndBookId(userEmail, bookId);
+
+        if (checkout==null){
+            throw new Exception("book does not exist or not checked out by user");
+        }
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date d1 = simpleDateFormat.parse(checkout.getReturnDate());
+        Date d2 = simpleDateFormat.parse(LocalDate.now().toString());
+
+        if(d1.compareTo(d2) >= 0){
+            checkout.setReturnDate(LocalDate.now().plusDays(14).toString());
+            checkoutRepository.save(checkout);
+        }
     }
 }
