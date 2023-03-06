@@ -94,8 +94,8 @@ export const SearchBooksPage = () => {
   const categoryField = (value: string) => {
     setCurrentPage(1);
     if (
-      value.toLowerCase() === "fe" ||
-      value.toLowerCase() === "be" ||
+      value.toLowerCase() === "front end" ||
+      value.toLowerCase() === "back end" ||
       value.toLowerCase() === "data" ||
       value.toLowerCase() === "devops"
     ) {
@@ -159,22 +159,22 @@ export const SearchBooksPage = () => {
                       All
                     </a>
                   </li>
-                  <li onClick={() => categoryField("fe")}>
+                  <li onClick={() => categoryField("Front End")}>
                     <a className="dropdown-item" href="#">
                       Front End
                     </a>
                   </li>
-                  <li onClick={() => categoryField("be")}>
+                  <li onClick={() => categoryField("Back End")}>
                     <a className="dropdown-item" href="#">
                       Back End
                     </a>
                   </li>
-                  <li onClick={() => categoryField("data")}>
+                  <li onClick={() => categoryField("Data")}>
                     <a className="dropdown-item" href="#">
                       Data
                     </a>
                   </li>
-                  <li onClick={() => categoryField("devops")}>
+                  <li onClick={() => categoryField("DevOps")}>
                     <a className="dropdown-item" href="#">
                       DevOps
                     </a>
