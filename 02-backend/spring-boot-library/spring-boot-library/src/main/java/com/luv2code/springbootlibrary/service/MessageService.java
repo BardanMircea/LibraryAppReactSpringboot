@@ -2,9 +2,12 @@ package com.luv2code.springbootlibrary.service;
 
 import com.luv2code.springbootlibrary.dao.MessageRepository;
 import com.luv2code.springbootlibrary.entity.Message;
+import com.luv2code.springbootlibrary.requestmodels.AdminMessageResponseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,4 +26,16 @@ public class MessageService {
 
         messageRepository.save(message);
     }
+
+    public void putMessage(AdminMessageResponseRequest adminMessageResponseRequest, String userEmail) throws Exception{
+        Optional<Message> message = messageRepository.findById(adminMessageResponseRequest.getId());
+        if(!message.isPresent()){throw new Exception("Message not found");};
+
+        message.get().setAdminEmail(userEmail);
+        message.get().setResponse(adminMessageResponseRequest.getResponse());
+        message.get().setClosed(true);
+
+        messageRepository.save(message.get());
+    }
+
 }
