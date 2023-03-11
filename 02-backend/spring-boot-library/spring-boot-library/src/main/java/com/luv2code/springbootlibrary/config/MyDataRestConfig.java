@@ -30,7 +30,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
 //      // Configure CORS Mapping
 
-        String theAllowedOrigins = "http://localhost:3000";
+        String theAllowedOrigins = "https://localhost:3000";
         cors.addMapping(config.getBasePath() + "/**")
                 .allowedOrigins(theAllowedOrigins);
     }
